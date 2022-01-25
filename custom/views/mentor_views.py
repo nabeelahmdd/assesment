@@ -4,7 +4,6 @@ from rest_framework.mixins import *
 from custom.models import Answer
 from rest_framework.permissions import IsAdminUser
 from custom.serializers.mentor_serializer import AnswerSerializer
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 
 class IsSuperUser(IsAdminUser):
@@ -15,7 +14,6 @@ class AnswerListViewSet(
 	ListModelMixin,
 	GenericViewSet
 ):
-	authentication_classes = [BasicAuthentication, SessionAuthentication]
 	permission_classes = [IsSuperUser]
 	serializer_class = AnswerSerializer
 
@@ -27,7 +25,6 @@ class AnswerCreateViewSet(
 	CreateModelMixin,
 	GenericViewSet
 ):
-	authentication_classes = [BasicAuthentication, SessionAuthentication]
 	permission_classes = [IsSuperUser]
 	queryset = Answer.objects.all()
 	serializer_class = AnswerSerializer
